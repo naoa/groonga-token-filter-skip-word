@@ -1,0 +1,12 @@
+register token_filters/skip_word
+
+table_create skip_word_with_positions TABLE_HASH_KEY ShortText
+load --table skip_word_with_positions
+[
+{"_key": "and"}
+]
+
+tokenize TokenBigram "Hello and World" \
+  --normalizer NormalizerAuto \
+  --token_filters TokenFilterSkipWordWithPosition
+
